@@ -4,6 +4,11 @@ body {
     padding: 0 25px;
 }
 
+.chats {
+    list-style: none;
+    background: red;
+}
+
 #main {
     width: 500px;
     margin: auto;
@@ -37,4 +42,7 @@ body {
     font-size: 12px;
     color: green;
     line-height: 13px;
+}
+#input{
+    width: 300px;
 }

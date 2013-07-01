@@ -6,13 +6,20 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css">
     <script src="vendor/jquery/jquery-1.9.1.js"></script>
-    <script src="js/setup.js"></script>
+    <script src='vendor/underscore.js'></script>
   </head>
   <body>
 
     <div id="main">
       <h1>Chat with JSON!</h1>
+      <input id='input'></input>
+      <button id="submit">Submit Message</button>
+      <button id="refresh">Refresh Messages</button>
+      <ol class='chats'>
+
+      </ol>
     </div>
+    <script src="js/setup.js"></script>
 
   </body>
 </html>

@@ -106,14 +106,20 @@ $('.changeRoom').on('click', function(){
   if (chatRooms.currentChatroom !== roomName && !chatRooms[roomName]){
     chatRooms.currentChatroom = roomName;
     chatRooms[roomName] = true;
-    $('.chatrooms').append('<li>' + roomName + '</li>');
+    $('.chatrooms').append('<li><a href="#">' + roomName + '</a></li>');
     clearTimeout(timeID);
     $get(roomName);
     $('#chatroomName').text(roomName);
     $('.chatroomField').val("");
   }
 });
-//$('#refresh').click($get);
+
+$('.chatrooms').on('click','li', function(){
+  chatRooms.currentChatroom = $(this).text();
+  $('#chatroomName').text($(this).text());
+  clearTimeout(timeID);
+  $get();
+});
 
 $('#submit').click(function(){
   $post($('#input').val());

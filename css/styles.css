@@ -2,30 +2,43 @@ body {
     background: #eee;
     text-align: center;
     padding: 0 25px;
+    width: 80%;
 }
-
+.friendlist {
+    float: right;
+}
 .chats {
     list-style: none;
-    background: red;
+    margin: 0px;
+    padding:0px;
 }
-
+.chats li{
+    width: 100%;
+    word-wrap: break-word;
+    border: 1px solid black;
+}
+.userLink{
+}
 #main {
     width: 500px;
     margin: auto;
     text-align: left;
     background: white;
-    padding: 50px 60px;
+    padding: 50px;
     border: solid #ddd;
     border-width: 0 1px 1px 1px;
 }
-
+.bold{
+    font-style: bold;
+    color: red;
+}
 #main h1 {
     margin-top: 0;
     font-size: 35px;
 }
 
 #main ul {
-    padding-left: 20px;
+    padding-left: 0;
 }
 
 #main .error {

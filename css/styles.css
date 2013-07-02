@@ -4,7 +4,7 @@ body {
     width: 80%;
 }
 .asidearea {
-    position: absolute;
+    position: fixed;
     width: 200px;   
     height: auto;
     display: inline-block;
@@ -102,4 +102,7 @@ body {
 }
 #input{
     width: 300px;
+}
+.chatroomField{
+    width:95%;
 }

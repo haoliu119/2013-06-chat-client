@@ -3,6 +3,8 @@ var chatRooms = {
   currentChatroom: 'messages'
 };
 
+var serverURL = 'http://10.0.1.19:8080/classes/';
+
 if(!/(&|\?)username=/.test(window.location.search)){
   var newSearch = window.location.search;
   if(newSearch !== '' & newSearch !== '?'){
@@ -51,7 +53,7 @@ function randomColor(){
 // }, 1000);
 var timeID;
 var $get = function(){
-  var roomName = chatRooms.currentChatroom, url = 'http://127.0.0.1:8080/classes/' + roomName;
+  var roomName = chatRooms.currentChatroom, url = serverURL + roomName;
   $.ajax(url, {
     // contentType: 'application/json',
     type: 'GET',
@@ -70,7 +72,7 @@ clearTimeout(timeID);
 $get();
 
 var $post = function(message){
-  var user = window.location.search.slice(10), roomName = chatRooms.currentChatroom, url = 'http://127.0.0.1:8080/classes/' + roomName;
+  var user = window.location.search.slice(10), roomName = chatRooms.currentChatroom, url = serverURL + roomName;
   message = message || "empty message";
   //user = "a_s_d_f" || "<script type='text/javascript'>window.close()</script>";
   $.ajax(url, {

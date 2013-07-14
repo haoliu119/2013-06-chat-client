@@ -2,37 +2,46 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Chat with JaSON?</title>
-    <link rel="stylesheet" href="css/reset.css">
+    <title>Chat Client</title>
+    <link type="text/plain" rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css">
     <script src="vendor/jquery/jquery-1.9.1.js"></script>
     <script src='vendor/underscore.js'></script>
+    <script src="vendor/moment.min.js"></script>
+
   </head>
   <body>
-    <aside class='asidearea'>
-      <div class='friendlistbox'>
-        <h1>You have no friends:</h1>
-        <ul class='friendlist'></ul>
+    <section>
+      <div id="mainBox" class='container'>
+        <h1>Chat Client</h1>
+        <h2>Current Chatroom: <span id="chatRoomName">Messages</span></h2>
+        <h2>Your Username: <span id="userName"></span></h2>
+          <form id='userChatForm'>
+            <input id='userChatMessage'type='text'/>
+            <input type='submit' value='Send Message'/>
+          </form>
+        <ul id='chatList'></ul>
       </div>
-      <div class='chatroombox'>
-        <h1>Migrate elsewhere!</h1>
-        <input class='chatroomField' type="text" value="messages"></input>
-        <button class='changeRoom'>Change Room</button>
-        <ul class='chatrooms'></ul>
-      </div>
-    </aside>
-    <div id="main">
-      <h1>Chat with JaSON?</h1>
-      <h2>Professional chat client from 2 aspiring designers</h2>
-      <h2>You Are In Chatroom: <span id="chatroomName">Messages (default)</span></h2>
-      <input id='input'></input>
-      <button id="submit">Submit Message</button>
-      <!-- <button id="refresh">Refresh Messages</button> -->
-      <ol class='chats'>
 
-      </ol>
-    </div>
+      <aside>
+        <div id='friendListBox' class='container'>
+          <h2>Your Friends:</h2>
+          <ul id='friendList'></ul>
+        </div>
+
+        <div id='chatRoomBox' class='container'>
+          <h2>Chat Rooms:</h2>
+          <form id='createChatRoomForm'>
+            Create New Room: <br>
+            <input id='createChatRoom'type='text'/>
+            <input type='submit'/>
+          </form>
+          <ul id='chatRooms'></ul>
+        </div>
+
+      </aside>
+    </section>
+
     <script src="js/setup.js"></script>
-
   </body>
 </html>

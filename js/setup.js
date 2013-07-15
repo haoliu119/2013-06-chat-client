@@ -4,7 +4,8 @@ var chatRooms = {
   currentChatroom: 'messages'
 };
 
-var serverURL = 'http://127.0.0.1:8080/classes/';
+var _SERVER_URL = 'http://127.0.0.1:8080/classes/';
+var refreshRate = 0000;
 
 if(!/(&|\?)username=/.test(window.location.search)){
   var newSearch = window.location.search;
@@ -20,14 +21,13 @@ if(!/(&|\?)username=/.test(window.location.search)){
 }
 var user = window.location.search.slice(10);
 $('#userName').text(user);
+
 // Don't worry about this code, it will ensure that your ajax calls are allowed by the browser
 // $.ajaxPrefilter(function(settings, _, jqXHR) {
 //   jqXHR.setRequestHeader("X-Parse-Application-Id", "voLazbq9nXuZuos9hsmprUz7JwM2N0asnPnUcI7r");
 //   jqXHR.setRequestHeader("X-Parse-REST-API-Key", "QC2F43aSAghM97XidJw8Qiy1NXlpL5LR45rhAVAf");
 // });
-/**
-  *
-  */
+
 function print(data){
   data = JSON.parse(data);
   $('#chatList').text('');
@@ -57,41 +57,46 @@ function prettyTimeStamp(timeStamp){
 }
 
 var timeID;
+/** GET: classes/[roomName] **/
 var $get = function(){
-  var roomName = chatRooms.currentChatroom, url = serverURL + roomName;
+  var roomName = chatRooms.currentChatroom,
+      url = _SERVER_URL + roomName;
+  console.log('GET request url: ', url);
   $.ajax(url, {
-    // contentType: 'application/json',
+    contentType: 'application/json',
     type: 'GET',
     data: {
-    // 'order':'-createdAt',
-    // 'limit': '30'
+      'order':'-createdAt',
+      'limit': '30'
     },
     success: print,
     error: function(data) {
       console.log('Ajax GET failed');
     }
   });
-  timeID = setTimeout($get, 2000);
+  if(refreshRate){
+    timeID = setTimeout($get, refreshRate);
+  }
 };
 
-
+/** POST: classes/[roomName] **/
 var $post = function(message){
-  var roomName = chatRooms.currentChatroom, url = serverURL + roomName;
-// message = message || "empty message";
+  var roomName = chatRooms.currentChatroom,
+      url = _SERVER_URL + roomName;
 $.ajax(url, {
-// contentType: 'application/json',
-type: 'POST',
-data: JSON.stringify({
-  /*jshint multistr: true */
-  'text' : message,
-  'username': user
-}),
-success: function(data){
-  console.log('POSTED');
-},
-error: function(data) {
-  console.log('Ajax POST failed');
-}
+  contentType: 'application/json',
+  type: 'POST',
+  data: JSON.stringify({
+    /*jshint multistr: true */
+    'text' : message,
+    'username': user
+  }),
+  success: function(data){
+    console.log('POSTED');
+  },
+  error: function(data) {
+    console.log('Ajax POST failed');
+  }
 });
 clearTimeout(timeID);
 $get(roomName);
@@ -99,6 +104,26 @@ $get(roomName);
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
  * Event Listeners
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+$('#refresh').find('select').change(function(){
+  clearTimeout(timeID);
+  refreshRate = $(this).val()*1000;
+  if(refreshRate){
+    $('#manualRefresh').find('input').prop('disabled', true);
+    timeID = setTimeout($get, refreshRate);
+  } else{
+    $('#manualRefresh').find('input').prop('disabled', false);
+  }
+});
+
+$('#manualRefresh').submit(function(event){
+  event.preventDefault();
+  $get();
+});
+
+$('#listLength').find('select').change(function(){
+  console.log($(this).val()); // >>> TODO: make server return limit of message on GET
+});
 
 /** Click Username:
  ** Add User to Fiend List,

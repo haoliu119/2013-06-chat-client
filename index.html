@@ -20,6 +20,25 @@
             <input id='userChatMessage'type='text'/>
             <input type='submit' value='Send Message'/>
           </form>
+          <form id="refresh">Auto-Refresh Every
+            <select>
+              <option value="2" >2</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="0" selected >-Manual-</option>
+            </select> Seconds
+          </form>
+          <form id='manualRefresh'>
+            <input type='submit' value='Manual Refresh'/>
+          </form>
+          <form id="listLength">Display
+            <select>
+              <option value="5">5</option>
+              <option value="10" selected>10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+            </select> Messages
+          </form>
         <ul id='chatList'></ul>
       </div>
 

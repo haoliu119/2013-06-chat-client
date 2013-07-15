@@ -17,6 +17,9 @@ h1{
 h2{
     font-size: 1.2em;
 }
+/*p{
+    display: inline;
+}*/
 div{
     border: 1px solid #DEDEDE;
     border-radius: 5px;
@@ -38,13 +41,26 @@ section{
     box-shadow: 1px 1px 3px 1px #808080;
 }
 form{
+    display: inline-block;
     margin: 0 0 10px 0;
+}
+input[type='submit'][disabled]{
+    color: gray;
+}
+#userChatForm{
+    width:100%;
 }
 #userChatForm input[type='text']{
     width: calc(100% - 160px);
 }
 #userChatForm input[type='submit']{
     width: 150px;
+}
+#manualRefresh{
+    margin-left: 5px;
+}
+#listLength{
+    float: right;
 }
 #createChatRoomForm input[type='text']{
     width: calc(100% - 74px);
